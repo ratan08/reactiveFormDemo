@@ -7,28 +7,70 @@
   <mat-card class="card">
     <mat-card-title>Registration Form</mat-card-title>
     <mat-divider></mat-divider>
-    <mat-horizontal-stepper class="stepper">
-      <mat-step  label="Personal Info.">
-        <p>pesronal</p>
-        <div>
-          <button mat-raised-button matStepperNext>Next</button>
-        </div>
-      </mat-step>
-      <mat-step  label="Address Info.">
-        <p>adderess</p>
-        <div>
-          <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button matStepperNext>Next</button>
-        </div>
-      </mat-step>
-      <mat-step  label="Done">
-        <p>done</p>
-        <div>
-          <button mat-raised-button matStepperPrevious>Back</button>
-          <button mat-raised-button >Done</button>
-        </div>
-      </mat-step>
-    </mat-horizontal-stepper>
+    <form [formGroup]="loginForm" (submit)="submit()">
+      <mat-horizontal-stepper class="stepper">
+        <mat-step  label="Personal Info.">
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label> First Name
+            </mat-label>
+            <input matInput formControlName="name" type="text">
+            <mat-error *ngIf="loginForm.controls.name.touched && loginForm.controls.name.invalid">
+              <span *ngIf="loginForm.controls.name.errors!.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label> Last Name
+            </mat-label>
+            <input matInput formControlName="name" type="name">
+            <mat-error *ngIf="loginForm.controls.name.touched && loginForm.controls.name.invalid">
+              <span *ngIf="loginForm.controls.name.errors!.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label> E-mail
+            </mat-label>
+            <input matInput formControlName="email" required>
+            <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+              <span *ngIf="loginForm.controls.email.errors!.required">This field is mandatory.</span>
+              <span *ngIf="loginForm.controls.email.errors!.pattern">This field is invalid.</span>
+            </mat-error>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step  label="Address Info.">
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Address
+            </mat-label>
+            <textarea
+             matInput formControlName="name" type="name"></textarea>
+            <mat-error *ngIf="loginForm.controls.name.touched && loginForm.controls.name.invalid">
+              <span *ngIf="loginForm.controls.name.errors!.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step  label="Done">
+         
+          <div class="radio">
+            <label>Select Gender:</label><br><br>
+            <mat-radio-group>
+              <mat-radio-button value="male">Male</mat-radio-button>
+              <mat-radio-button value="female" style="margin-left: 10px;">Female</mat-radio-button>
+            </mat-radio-group>
+          </div><br>
+          <div>
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" type="submit" >Done</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </form>
+    
   </mat-card>
   
 </div>
