@@ -23,6 +23,9 @@ export class AppComponent {
     this.loginForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.pattern(this.emailRegx)]],
       name: [null, Validators.required],
+      lname: [null, Validators.required],
+      add: [null, Validators.required],
+      gender: ['', Validators.required]
     });
   }
 
@@ -30,8 +33,8 @@ export class AppComponent {
     if (!this.loginForm.valid) {
       alert("fill the form")
     }else{
-      alert("Form submitted")
+      alert("Form submitted  ")
     }
-    console.log(this.loginForm);
+    console.log(this.loginForm.value);
   }
 }

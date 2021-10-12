@@ -9,23 +9,28 @@
     <mat-divider></mat-divider>
     <form [formGroup]="loginForm" (submit)="submit()">
       <mat-horizontal-stepper class="stepper">
-        <mat-step  label="Personal Info.">
-          <mat-form-field class="form-field" appearance="outline">
-            <mat-label> First Name
-            </mat-label>
-            <input matInput formControlName="name" type="text">
-            <mat-error *ngIf="loginForm.controls.name.touched && loginForm.controls.name.invalid">
-              <span *ngIf="loginForm.controls.name.errors!.required">This field is mandatory.</span>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="form-field" appearance="outline">
-            <mat-label> Last Name
-            </mat-label>
-            <input matInput formControlName="name" type="name">
-            <mat-error *ngIf="loginForm.controls.name.touched && loginForm.controls.name.invalid">
-              <span *ngIf="loginForm.controls.name.errors!.required">This field is mandatory.</span>
-            </mat-error>
-          </mat-form-field>
+        <mat-step class="field" label="Personal Info.">
+          <div>
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label> First Name
+              </mat-label>
+              <input matInput formControlName="name" type="text">
+              <mat-error *ngIf="loginForm.controls.name.touched && loginForm.controls.name.invalid">
+                <span *ngIf="loginForm.controls.name.errors!.required">This field is mandatory.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label> Last Name
+              </mat-label>
+              <input matInput formControlName="lname" type="text">
+              <mat-error *ngIf="loginForm.controls.lname.touched && loginForm.controls.lname.invalid">
+                <span *ngIf="loginForm.controls.lname.errors!.required">This field is mandatory.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+         <div>
           <mat-form-field class="form-field" appearance="outline">
             <mat-label> E-mail
             </mat-label>
@@ -35,18 +40,20 @@
               <span *ngIf="loginForm.controls.email.errors!.pattern">This field is invalid.</span>
             </mat-error>
           </mat-form-field>
+         </div>
+          
           <div>
             <button mat-raised-button matStepperNext>Next</button>
           </div>
         </mat-step>
-        <mat-step  label="Address Info.">
+        <mat-step class="field" label="Address Info.">
           <mat-form-field class="form-field" appearance="outline">
             <mat-label>Address
             </mat-label>
             <textarea
-             matInput formControlName="name" type="name"></textarea>
-            <mat-error *ngIf="loginForm.controls.name.touched && loginForm.controls.name.invalid">
-              <span *ngIf="loginForm.controls.name.errors!.required">This field is mandatory.</span>
+             matInput formControlName="add" type="text"></textarea>
+            <mat-error *ngIf="loginForm.controls.add.touched && loginForm.controls.add.invalid">
+              <span *ngIf="loginForm.controls.add.errors!.required">This field is mandatory.</span>
             </mat-error>
           </mat-form-field>
           <div>
@@ -54,13 +61,13 @@
             <button mat-raised-button matStepperNext>Next</button>
           </div>
         </mat-step>
-        <mat-step  label="Done">
+        <mat-step class="field" label="Done">
          
           <div class="radio">
             <label>Select Gender:</label><br><br>
-            <mat-radio-group>
-              <mat-radio-button value="male">Male</mat-radio-button>
-              <mat-radio-button value="female" style="margin-left: 10px;">Female</mat-radio-button>
+            <mat-radio-group formControlName="gender">
+              <mat-radio-button value="Male" >Male</mat-radio-button>
+              <mat-radio-button value="Female" style="margin-left: 10px;">Female</mat-radio-button>
             </mat-radio-group>
           </div><br>
           <div>
