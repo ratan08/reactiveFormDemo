@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card'; 
 
 @Component({
   selector: 'app-root',
