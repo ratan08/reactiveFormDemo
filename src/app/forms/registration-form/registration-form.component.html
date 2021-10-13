@@ -1,0 +1,97 @@
+<!-- <app-registration-form></app-registration-form> -->
+<div class="container">
+  <p>
+    <mat-toolbar>
+      <span>My Application</span>
+    </mat-toolbar>
+  </p>
+  <mat-card class="card">
+    <mat-card-title>Registration Form</mat-card-title>
+    <mat-divider></mat-divider>
+    <form [formGroup]="loginForm">
+      <mat-horizontal-stepper class="stepper">
+        <mat-step class="field" label="Personal Info.">
+          <div>
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label> First Name
+              </mat-label>
+              <input matInput formControlName="name" type="text">
+              <mat-error *ngIf="loginForm.controls.name.touched && loginForm.controls.name.invalid">
+                <span *ngIf="loginForm.controls.name.errors!.required">This field is mandatory.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field class="form-field" appearance="outline">
+              <mat-label> Last Name
+              </mat-label>
+              <input matInput formControlName="lname" type="text">
+              <mat-error *ngIf="loginForm.controls.lname.touched && loginForm.controls.lname.invalid">
+                <span *ngIf="loginForm.controls.lname.errors!.required">This field is mandatory.</span>
+              </mat-error>
+            </mat-form-field>
+          </div>
+         <div>
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label> E-mail
+            </mat-label>
+            <input matInput formControlName="email" required>
+            <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+              <span *ngIf="loginForm.controls.email.errors!.required">This field is mandatory.</span>
+              <span *ngIf="loginForm.controls.email.errors!.pattern">This field is invalid.</span>
+            </mat-error>
+          </mat-form-field>
+         </div>
+          
+          <div>
+            <button mat-raised-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step class="field" label="Address Info.">
+          <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Address
+            </mat-label>
+            <textarea
+             matInput formControlName="add" type="text"></textarea>
+             <mat-hint>Enter Full Address</mat-hint>
+            <mat-error *ngIf="loginForm.controls.add.touched && loginForm.controls.add.invalid">
+              <span *ngIf="loginForm.controls.add.errors!.required">This field is mandatory.</span>
+            </mat-error>
+          </mat-form-field>
+          <br><br>
+          <div>
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button mat-raised-button matStepperNext>Next</button>
+          </div>
+        </mat-step>
+        <mat-step class="field" label="Done">
+         
+          <div class="radio">
+            <label>Select Gender:</label><br><br>
+            <mat-radio-group formControlName="gender">
+              <mat-radio-button value="Male" >Male</mat-radio-button>
+              <mat-radio-button value="Female" style="margin-left: 10px;">Female</mat-radio-button>
+            </mat-radio-group>
+          </div><br>
+          <label>Add Skills :</label><br><br>
+           <div class="form-array" >
+             <ng-container formArrayName="skills" *ngFor="let skill of addSkills; let i=index">
+              <mat-form-field class="form-field" appearance="outline">
+                <mat-label>Skills</mat-label>
+                <input  matInput [formControlName]="i" >
+              </mat-form-field>
+             </ng-container> 
+          </div>
+          <button style="margin-bottom: 15px;" mat-raised-button (click)="add()"><mat-icon>add</mat-icon> Add</button>
+          
+          <div>
+            <button mat-raised-button matStepperPrevious>Back</button>
+            <button style="margin-left: 10px;" mat-raised-button color="primary" type="submit" (click)="submit()">Done</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </form>
+    
+  </mat-card>
+  
+</div>
